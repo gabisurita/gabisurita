@@ -1,4 +1,8 @@
-### Hi there 👋
+### About me
+
+Hey there! I'm a Computer Engineer with experience in managing high-performance teams for solving hard problems. I like to work on all aspects of product design and engineering ranging from data to UX. Still, my heart is working with AI technologies that move the world forward. For the last two years, I've been working with routing solutions and logistics network design at Loggi. I'm also pursuing a master's degree at University of Campinas.
+
+
 
 <!--
 **gabisurita/gabisurita** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
