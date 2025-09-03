@@ -1,6 +1,9 @@
 ### About
 
-Hi there! I'm a Computer Engineer with experience in managing high-performance teams for solving complex problems. I like to work on all aspects of product design and engineering, ranging from data pipelines to UX challenges. Still, my heart is working with AI technologies that move the world forward.
+Building the AI counterculture.
+
+Currently working on Google DeepMind's Gemini to improve code generation, and ways to use AI to empower programmers and tech workers. My Github has been a bit quiet lately, but I miss it here :)
+
 ### Contact me
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" width="16" height="16" /> [Gmail](mailto://gabsurita@gmail.com)  
