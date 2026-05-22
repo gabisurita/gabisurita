@@ -14,3 +14,4 @@ Adicione o seu projeto na tabela abaixo usando um Pull Request e compartilhe o q
 | [l4ur4oliveira](https://github.com/l4ur4oliveira) | [daily-dashboard](https://github.com/l4ur4oliveira/daily-dashboard) | - | Dashboard em Next.js e TypeScript integrando com Google APIs (OAuth, Gmail e Calendar). |
 | [@ingridcos](https://github.com/ingridcos) | [Sprint_IA_Programaria](https://github.com/ingridcos/Sprint_IA_Programaria) | [Link do Site](https://github.com/ingridcos/Sprint_IA_Programaria/tree/master/Integracao_gmail_calendario) | Integração com Gmail e Google Calendar usando IA. |
 | [devdanzin](https://github.com/devdanzin) | [github_dashboard](https://github.com/devdanzin/github_dashboard) | [Link do Site](https://devdanzin.github.io/github_dashboard/dashboard.html) | Dashboard editável e configurável para visualizar informações do GitHub. |
+[boasvindas.html](https://github.com/reginacorrea154-cyber/Projeto-dashboard-05.2026/blob/main/boasvindas.html)
