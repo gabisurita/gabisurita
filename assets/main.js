@@ -128,13 +128,13 @@ document.head.appendChild(style);
   const savedLang = localStorage.getItem('preferred-language');
 
   const pageTitle = {
-    'en-uk': 'Gabi Surita — Building the AI Counterculture',
-    'pt-br': 'Gabi Surita — Construindo a Contracultura da IA'
+    'en-uk': 'Gabi Surita',
+    'pt-br': 'Gabi Surita'
   };
 
   const pageDesc = {
-    'en-uk': 'Gabriela Surita — AI researcher working on Gemini, code generation, and empowering developers through AI.',
-    'pt-br': 'Gabriela Surita — Pesquisadora de IA trabalhando no Gemini, geração de código e empoderamento de desenvolvedores por meio de IA.'
+    'en-uk': 'Gabriela Surita — AI researcher working on code generation and intelligent agents.',
+    'pt-br': 'Gabriela Surita — Pesquisadora de IA trabalhando com geração de código e agentes inteligentes.'
   };
 
   function setLanguage(lang) {

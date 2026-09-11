@@ -1,8 +1,6 @@
 ### About
 
-Building the AI counterculture.
-
-Currently working on Google DeepMind's Gemini to improve code generation, and ways to use AI to empower programmers and tech workers. My Github has been a bit quiet lately, but I miss it here :)
+Staff Research Engineer at Google DeepMind working on code generation and AI agents. My GitHub has been a bit quiet lately, but I miss it here :)
 
 ### Contact me
 
