@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How I once build a real-time location system — Gabi Surita</title>
+  <title>How I once built a real-time location system — Gabi Surita</title>
   <meta name="description" content="and how I'd do it again" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,7 +28,7 @@
       <div class="partnership-badges">
         <span class="partner-badge partner-badge-ag">Logistics Tales: Part 1</span>
       </div>
-      <h1 class="course-hero-title" style="font-size: clamp(2rem, 5vw, 4.5rem);">How I once build a real-time location
+      <h1 class="course-hero-title" style="font-size: clamp(2rem, 5vw, 4.5rem);">How I once built a real-time location
         system</h1>
       <p class="course-hero-subtitle" style="font-size: clamp(1.1rem, 2.5vw, 1.4rem);">... and how I'd do it again.</p>
       <div class="course-meta">
@@ -223,7 +223,7 @@
         like a good idea</h3>
       <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 1.5rem;">
         Redis uses Geohashes stored in Sorted Sets under the hood. It's incredibly fast. Handling 25,000 writes per
-        second is a walk in the park for Redis. We could simply use <code>GEOADD</code> to update driver locations and
+        second is well within what Redis can comfortably handle. We could simply use <code>GEOADD</code> to update driver locations and
         use <code>GEORADIUS</code> to fetch nearby drivers for new orders.
       </p>
 
@@ -417,11 +417,10 @@
         </div>
       </div>
 
-      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">The Magic of
-        the Hierarchy</h3>
+      <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">The Hierarchy Advantage</h3>
       <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 1.5rem;">
-        There is a hidden superpower in this approach: we don't actually have to guess the perfect search radius or
-        number of queries. Because H3 is <strong>hierarchical</strong>, larger parent hexagons perfectly contain smaller
+        The neat thing about this approach is that we don't actually have to guess the perfect search radius or
+        number of queries. Because H3 is <strong>hierarchical</strong>, larger parent hexagons cleanly contain smaller
         child hexagons.
       </p>
       <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 2rem;">
@@ -626,19 +625,18 @@
       </div>
 
       <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">Why this scales
-        infinitely</h3>
+        so cleanly</h3>
       <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 1.5rem;">
         By converting a complex 2D spatial problem into simple 1D string lookups, we removed all CPU bottlenecks from
         the database. Furthermore, because data is accessed strictly by string keys, <strong>sharding becomes
-          trivial</strong>. You can distribute the keys across a massive cluster without any "cross-boundary" spatial
-        query nightmares.
+        trivial</strong>. You can distribute the keys across a cluster without any "cross-boundary" spatial query nightmares.
       </p>
 
       <div class="callout callout-info" style="margin-top: 2rem;">
         <span class="callout-icon">💡</span>
         <div>
           <strong>Storage Agnostic</strong><br>
-          It's worth noting that in this architecture, <strong>Redis is just an implementation detail</strong>. Because
+          In this architecture, <strong>Redis is just an implementation detail</strong>. Because
           we're only doing simple string-based set lookups, the design is completely agnostic to the storage layer. You
           could swap Redis for Memcached, DynamoDB, Cassandra, or any other fast key-value store, and the core logic
           would remain exactly the same.
