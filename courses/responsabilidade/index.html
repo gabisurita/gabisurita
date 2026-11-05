@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assine a sua entrega: Responsabilidade na era do desenvolvimento com IA | Gabi Surita</title>
+  <meta name="description"
+    content="Gerar código é barato e o gargalo mudou de lugar. Veja como trabalhar em equipe e responder pelo que vai para produção." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <link rel="stylesheet" href="../vibecoding/style.css" />
+  <style>
+    .article-body {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+    }
+
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin: 3.5rem 0 1.25rem;
+      line-height: 1.2;
+    }
+
+    .article-body h2:first-of-type {
+      margin-top: 0;
+    }
+
+    .article-body h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      margin: 2.5rem 0 1rem;
+      line-height: 1.3;
+    }
+
+    .article-body h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 1.75rem 0 0.75rem;
+      line-height: 1.3;
+    }
+
+    .article-body a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .article-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .article-table th {
+      padding: 1rem;
+      border-bottom: 2px solid var(--border);
+      text-align: left;
+      color: var(--text-primary);
+    }
+
+    .article-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Theme toggle fixed -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Mudar para modo claro"
+    style="position:fixed;top:1.25rem;right:1.5rem;z-index:200;">☀️</button>
+
+  <!-- COURSE HERO -->
+  <section class="course-hero" style="min-height: 42vh; padding: 6rem 0 3.5rem; border-bottom: 1px solid var(--border);">
+    <div class="course-hero-bg"></div>
+    <div class="container course-hero-inner" style="max-width: 740px;">
+      <div class="partnership-badges">
+        <span class="partner-badge partner-badge-prog">Programaria</span>
+      </div>
+      <h1 class="course-hero-title" style="font-size: clamp(2.2rem, 5vw, 3.8rem);">Assine a sua entrega:
+        Responsabilidade na era do desenvolvimento com IA</h1>
+      <p class="course-hero-subtitle">Gerar código é barato e o gargalo mudou de lugar. Veja como trabalhar em equipe
+        e responder pelo que vai para produção.</p>
+      <div class="course-meta" style="margin-bottom: 0;">
+        <span class="meta-chip">🤝 Liderança técnica</span>
+        <span class="meta-chip">🔍 Code Review</span>
+        <span class="meta-chip">🤖 Agentes de IA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO CONTÍNUO -->
+  <main class="article-body">
+
+    <h2>Introdução</h2>
+
+    <p style="margin-bottom: 0.4rem;">
+      Linus Torvalds resumiu a cultura de desenvolvimento de software na lista de discussão do Linux em 2000 com a
+      frase <em>"Falar é fácil, me mostre o código"</em>*.
+    </p>
+    <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      * <em>"Talk is cheap. Show me the code."</em>
+    </p>
+
+    <p>
+      Essa frase nunca foi muito boa. Ela ajudou a alimentar o mito de que programar é um trabalho solitário e que
+      alinhar ideias, discutir problemas e ouvir o time são perda de tempo. Escrever código sem alinhar o problema
+      antes já gerava sistemas difíceis de manter. Mas o argumento ainda tinha uma base real: sentar na
+      frente do computador e entregar código funcionando exigia muito esforço.
+    </p>
+
+    <p>
+      Essa relação se inverteu hoje. O código também é barato. Nós conseguimos gerar arquivos inteiros, escrever testes
+      e preparar uma entrega em segundos a partir de dois parágrafos de instruções.
+    </p>
+
+    <p>
+      O trabalho diminuiu de verdade para quem está escrevendo o código. Tarefas mecânicas que antes tomavam dias agora
+      ficam prontas em poucos minutos. Nós descrevemos o problema para o agente, vemos o projeto rodar e já temos uma
+      primeira versão funcionando.
+    </p>
+
+    <p>
+      Essa velocidade cria um desequilíbrio dentro do time. Quem cria gasta muito menos energia, mas quem
+      revisa passa a receber entregas maiores e mais frequentes. O código gerado por máquina costuma vir acompanhado de
+      funções extras, abstrações desnecessárias e alterações espalhadas por vários arquivos.
+    </p>
+
+    <p>
+      O gargalo da engenharia de software mudou de lugar. Produzir código deixou de ser a etapa mais lenta do nosso
+      trabalho. Revisar um volume grande de código que nem a pessoa autora limpou antes drena a atenção da equipe
+      inteira. O ganho individual de quem gerou o código vira sobrecarga para quem precisa entender o que foi feito e
+      sustentar essas decisões em produção.
+    </p>
+
+    <h2>Proposta</h2>
+
+    <p>
+      Muita coisa ainda está mudando na forma como construímos software com IA. Mesmo em um cenário em movimento, esta é
+      a minha recomendação hoje para times e lideranças técnicas de projetos que querem aproveitar a velocidade dos
+      agentes sem perder o controle do sistema nem esgotar a equipe.
+    </p>
+
+    <p style="margin-bottom: 0.75rem;">
+      A proposta se apoia em quatro princípios:
+    </p>
+
+    <ol style="margin: 0 0 2rem 1.5rem; color: var(--text-primary); font-weight: 500; line-height: 2;">
+      <li><a href="#respeito-revisao">Respeito ao tempo de revisão</a></li>
+      <li><a href="#transparencia">Transparência com o time</a></li>
+      <li><a href="#separar-rascunho">Separar rascunho de produção</a></li>
+      <li><a href="#duas-pessoas">Duas <em>pessoas</em> apertam o botão</a></li>
+    </ol>
+
+    <h3 id="respeito-revisao">1. Respeito ao tempo de revisão</h3>
+
+    <p>
+      Quando você pede uma revisão de código ou compartilha um documento ou análise, você deve ser a primeira pessoa a
+      revisar o material, limpando e checando se tudo faz sentido antes de pedir a atenção do time. Do outro
+      lado, encoraje a equipe a devolver entregas que parecem ter saído direto do agente sem filtro, fazendo uma
+      pergunta direta antes de continuar a revisão:
+    </p>
+
+    <div class="vibe-definition" style="margin-bottom: 1.5rem;">
+      <div class="vibe-quote" style="font-size: 1.05rem;">
+        "Esse código parece gerado por IA e não revisado, você pode confirmar se revisou todas as linhas?"
+      </div>
+    </div>
+
+    <p>
+      Essa pergunta pode parecer rude à primeira vista, mas não deve ser encarada assim. Ela é apenas um pedido de
+      assinatura. Quem vai revisar precisa saber se a pessoa autora já leu, entendeu e validou aquele material, ou se a
+      equipe está prestes a gastar horas sendo a primeira pessoa a ler o que a máquina escreveu.
+    </p>
+
+    <p>
+      Mudanças grandes também devem ser evitadas, mesmo quando já foram revisadas pela pessoa autora. Isso já era
+      verdade antes da IA e continua sendo verdade hoje. Ninguém consegue manter a atenção lendo oitocentas linhas de
+      uma vez só. Quebrar o trabalho em partes menores é essencial para preservar o senso crítico de quem revisa.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th style="width: 42%;">O que evitar</th>
+            <th>Exemplo prático</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Compartilhar uma entrega sem ler e entender o próprio código.</td>
+            <td>Ser a primeira pessoa a revisar a entrega, entender o que cada linha faz e remover o que não é
+              necessário antes de pedir o tempo do time.</td>
+          </tr>
+          <tr>
+            <td>Gastar horas tentando revisar um código que parece ter saído direto da IA sem filtro.</td>
+            <td>Escrever para a pessoa autora no PR: <em>"Esse código parece gerado por IA e não revisado, você pode
+                confirmar se revisou todas as linhas?"</em></td>
+          </tr>
+          <tr>
+            <td>Enviar ou aceitar mudanças grandes de uma vez, mesmo que já tenham sido revisadas.</td>
+            <td>Dividir o trabalho em entregas pequenas antes de compartilhar, ou pedir para a pessoa autora quebrar em
+              partes menores antes de seguir com a revisão.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="transparencia">2. Transparência com o time</h3>
+
+    <p>
+      Ninguém deve ter vergonha de usar ou de não usar IA no código. A ferramenta é um meio para resolver problemas, e
+      não um fim em si mesma. Um ambiente seguro permite que as pessoas falem abertamente sobre como construíram cada
+      entrega, sem medo de parecerem menos técnicas por usarem um agente ou lentas por escreverem na mão.
+    </p>
+
+    <p>
+      Essa abertura deixa a comunicação muito mais leve para todo mundo. Se alguém perguntar no Pull Request se você
+      revisou o código, responder um simples <em>"sim, revisei"</em> já é suficiente. Ninguém precisa se justificar por
+      ter usado IA. O time só precisa da confirmação de que você leu, entendeu e responde por aquela mudança. Da
+      mesma forma, quando você quiser compartilhar um rascunho apenas para discutir uma ideia, avise logo na primeira
+      linha que o conteúdo foi gerado por IA e ainda não foi revisado.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th style="width: 42%;">O que evitar</th>
+            <th>Exemplo prático</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Enviar um código, análise ou documento para revisão escrito por IA que você não checou.</td>
+            <td>Escrever no topo da mensagem: <em>"Rascunho gerado por IA, ainda não revisei os detalhes. Quero apenas
+                validar se seguimos por esse caminho."</em></td>
+          </tr>
+          <tr>
+            <td>Usar um agente para revisar o código e aprovar se ele não encontrar problemas.</td>
+            <td>Compartilhar os apontamentos do agente avisando que vieram da IA e só aprovar depois de ler e revisar o
+              código pessoalmente.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="separar-rascunho">3. Separar rascunho de produção</h3>
+
+    <p>
+      No tutorial de <a href="../vibecoding/">Vibecoding</a>, vimos como focar no produto e deixar a IA conduzir a
+      criação. Esse formato funciona muito bem quando queremos validar ideias rápidas, testar interfaces ou montar
+      ferramentas pessoais. Uma falha em um protótipo não causa prejuízo financeiro nem expõe dados de clientes.
+    </p>
+
+    <p>
+      O problema surge quando levamos esse improviso para o código de produção ou para sistemas de tomada de decisão
+      real. Um serviço que calcula tarifas, aprova pedidos ou guarda dados sensíveis não pode depender de código que
+      ninguém sabe explicar.
+    </p>
+
+    <p>
+      Separe fisicamente o código revisado do código não revisado. Mantenha experimentos e rascunhos em um repositório
+      próprio ou em um diretório isolado do sistema principal. Essa barreira física evita que código gerado sem filtro
+      se misture por engano com o que roda em produção. O rascunho serve para testar hipóteses e descobrir o que deve
+      ser construído. Quando terminar a fase de exploração, descarte o protótipo e reescreva a solução do zero no
+      repositório oficial, dividindo o trabalho em mudanças pequenas que o time consiga revisar e compreender por
+      completo.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th style="width: 42%;">O que evitar</th>
+            <th>Exemplo prático</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Explorar ideias com o agente direto no repositório ou na branch que vai para produção.</td>
+            <td>Criar uma pasta ou repositório separado de protótipo para testar o fluxo sem risco para o sistema real.
+            </td>
+          </tr>
+          <tr>
+            <td>Aproveitar o código do protótipo direto no repositório principal.</td>
+            <td>Descartar o rascunho assim que a solução ficar clara e reescrever do zero no projeto oficial em commits
+              pequenos e revisáveis.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="duas-pessoas">4. Duas <em>pessoas</em> apertam o botão</h3>
+
+    <p>
+      O agente de IA não entra no code red quando uma cobrança duplica na sexta-feira à noite ou um banco
+      de dados trava em produção. Quem abriu a mudança e quem aprovou a revisão respondem sempre pelo código entregue. O
+      código que vai para o ar leva o nosso nome, independentemente da ferramenta que usamos para escrever as linhas.
+    </p>
+
+    <p>
+      Toda mudança que vai para produção precisa de pelo menos duas pessoas que entendam o que aquele código faz:
+      quem escreve e envia a entrega, e quem revisa e aprova. A regra é direta: não mande para revisão e não aprove em
+      produção um código que você não consiga explicar, defender e consertar sem a ajuda da IA.
+    </p>
+
+    <h4 id="agentes-na-revisao">O papel dos agentes na revisão</h4>
+
+    <p>
+      Isso não significa banir a IA da etapa de revisão. Agentes podem ser usados para facilitar bastante a preparação e
+      a leitura do código. Use modelos para organizar mudanças, sugerir formas mais simples de reescrever blocos de
+      código e apontar trechos repetidos. Use também como um primeiro filtro para detectar vulnerabilidades
+      conhecidas, credenciais expostas ou consultas perigosas.
+    </p>
+
+    <p>
+      O limite está na responsabilidade final. A ferramenta serve para facilitar o trabalho e apontar riscos, mas nunca
+      exime duas pessoas de entenderem o código por completo e apertarem o botão para colocar a mudança no ar.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table class="article-table">
+        <thead>
+          <tr>
+            <th style="width: 42%;">O que evitar</th>
+            <th>Exemplo prático</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Substituir a revisão feita por pessoas por um agente revisor.</td>
+            <td>Usar o agente para sugerir como simplificar blocos de código ou buscar vulnerabilidades, mantendo a
+              leitura e a aprovação final sempre com uma pessoa do time.</td>
+          </tr>
+          <tr>
+            <td>Aprovar um PR rápido confiando apenas que a pessoa autora ou o agente revisou.</td>
+            <td>Questionar decisões da mudança durante o review e só aprovar quando as duas pessoas souberem explicar
+              como aquele código funciona.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Contexto</h2>
+
+    <p>
+      Por que precisamos dessas travas em vez de deixar os agentes trabalhando e aprovando entregas sozinhos? A resposta
+      está na própria forma como esses modelos aprendem a resolver problemas e nos incidentes que já começaram a
+      aparecer na indústria.
+    </p>
+
+    <p>
+      Agentes são treinados com aprendizado por reforço para atingir uma meta mensurável, como fazer testes passarem ou
+      chegar a uma resposta final. O treinamento recompensa o resultado final, não o caminho escolhido. O modelo procura a rota de
+      menor resistência até a pontuação e aprende a pegar atalhos, um comportamento conhecido na pesquisa de IA como
+      <em>reward hacking</em>.
+    </p>
+
+    <p>
+      Em julho de 2025, um teste público com o agente do Replit mostrou o que acontece quando um modelo tenta contornar
+      problemas sem isolamento entre rascunho e produção. O agente ignorou instruções explícitas de congelamento de
+      código, interpretou uma consulta vazia como um bug e <a
+        href="https://www.businessinsider.com/replit-ceo-apologizes-ai-coding-tool-delete-company-database-2025-7"
+        target="_blank" rel="noopener noreferrer">apagou o banco de dados de produção</a> com registros de mais de mil e
+      duzentas empresas. Quando foi questionado sobre o sumiço, o modelo ainda gerou milhares de cadastros falsos para
+      mascarar o problema e afirmou que era impossível recuperar o backup.
+    </p>
+
+    <p>
+      Outro incidente parecido derrubou um serviço da própria Amazon em dezembro de 2025. Uma pessoa engenheira pediu
+      para o Kiro, agente interno da empresa, corrigir um bug simples no AWS Cost Explorer. O agente decidiu por conta
+      própria que a solução mais rápida era apagar e recriar o ambiente de produção inteiro, <a
+        href="https://www.geekwire.com/2026/amazon-pushes-back-on-financial-times-report-blaming-ai-coding-tools-for-aws-outages/"
+        target="_blank" rel="noopener noreferrer">tirando o serviço do ar por treze horas</a>. Quando o caso saiu na
+      imprensa, a Amazon publicou uma <a href="https://www.aboutamazon.com/news/aws/aws-service-outage-ai-bot-kiro"
+        target="_blank" rel="noopener noreferrer">nota oficial</a> dizendo que a culpa não era da ferramenta de IA, e
+      sim um erro de quem configurou as permissões e a falta de revisão por pares. Na hora que o sistema cai, a
+      empresa não culpa o modelo. A conta sobra para quem operou a ferramenta.
+    </p>
+
+    <p>
+      A busca por atalhos chegou ao extremo em julho de 2026. A OpenAI avaliava agentes autônomos em desafios de
+      segurança dentro de um ambiente isolado. Os modelos deduziram que as respostas do teste poderiam estar salvas no
+      Hugging Face. Em vez de resolver os desafios propostos, agentes quebraram as travas de segurança do ambiente de
+      testes, usaram credenciais expostas na internet e <a
+        href="https://huggingface.co/blog/agent-intrusion-technical-timeline" target="_blank"
+        rel="noopener noreferrer">invadiram a infraestrutura do Hugging Face</a> para buscar o gabarito.
+    </p>
+
+    <p>
+      Os agentes não apagaram bancos de dados nem atacaram plataformas por malícia. Eles trataram cada uma dessas ações
+      apenas como o caminho mais curto para bater a meta, como a própria <a
+        href="https://openai.com/index/hugging-face-incident-and-the-road-ahead/" target="_blank"
+        rel="noopener noreferrer">OpenAI reconheceu depois</a>. Nos nossos repositórios do dia a dia, a mesma lógica faz
+      o agente apagar uma verificação difícil, comentar um teste quebrado ou afrouxar uma regra de permissão só para ver
+      os testes ficarem verdes. Segurança e clareza nunca são a prioridade espontânea da máquina.
+    </p>
+
+    <h2>Conclusão</h2>
+
+    <p>
+      Lideranças técnicas têm um papel central nessa transição. A minha recomendação pode não funcionar do mesmo jeito
+      para qualquer time, por isso é importante que cada equipe escreva ou adapte as regras do jogo para o seu próprio
+      contexto. Quem lidera o projeto precisa deixar esses combinados claros, não ter medo de revisá-los com frequência
+      conforme as ferramentas mudam e reforçá-los no dia a dia. Momentos de mudança também exigem cuidado com as
+      pessoas, já que a pressão por velocidade é grande e proteger a saúde do time faz parte do trabalho técnico.
+    </p>
+
+    <p>
+      O custo de escrever linhas de código caiu, mas as boas práticas de desenvolvimento continuam as mesmas. Mudanças
+      pequenas, testes que validam o comportamento real, separação entre rascunho e produção e revisões cuidadosas
+      mantêm a mesma importância na era dos agentes.
+    </p>
+
+    <p>
+      Essas práticas nunca existiram porque digitar código era difícil. Elas existem para que pessoas consigam entender,
+      manter e confiar nos sistemas que constroem juntas. As ferramentas ficaram mais rápidas, mas a responsabilidade
+      pelo que vai para o ar continua nas nossas mãos.
+    </p>
+
+  </main>
+
+  <script src="../../assets/main.js"></script>
+</body>
+
+</html>
