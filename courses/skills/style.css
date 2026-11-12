@@ -88,8 +88,6 @@ html[data-theme="light"] .platform-tab.active {
   display: none;
 }
 
-html[data-selected-platform="antigravity"] [data-platform-content="antigravity"],
-html[data-selected-platform="claude-code"] [data-platform-content="claude-code"],
 html[data-selected-platform="gemini-app"] [data-platform-content="gemini-app"],
 html[data-selected-platform="claude-app"] [data-platform-content="claude-app"] {
   display: block;

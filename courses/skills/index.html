@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pare de repetir prompt: crie skills reutilizáveis para agentes de IA | Gabi Surita</title>
   <meta name="description"
-    content="Aprenda na prática a transformar instruções recorrentes e gráficos padronizados em skills reutilizáveis para Gemini App, Claude App, Antigravity e Claude Code." />
+    content="Aprenda na prática a transformar instruções recorrentes e gráficos padronizados em skills reutilizáveis no Gemini App e no Claude App." />
   <script>
     (function () {
       var savedPlatform = localStorage.getItem('skills-course-platform-v2');
-      var valid = ['antigravity', 'claude-code', 'gemini-app', 'claude-app'];
+      var valid = ['gemini-app', 'claude-app'];
       if (savedPlatform && valid.indexOf(savedPlatform) !== -1) {
         document.documentElement.setAttribute('data-selected-platform', savedPlatform);
       }
@@ -84,8 +84,6 @@
       <div class="platform-tabs" role="tablist" aria-label="Plataforma do tutorial">
         <button class="platform-tab active" type="button" data-platform-btn="gemini-app">Gemini App</button>
         <button class="platform-tab" type="button" data-platform-btn="claude-app">Claude App</button>
-        <button class="platform-tab" type="button" data-platform-btn="antigravity">Antigravity</button>
-        <button class="platform-tab" type="button" data-platform-btn="claude-code">Claude Code</button>
       </div>
     </div>
   </div>
@@ -118,8 +116,9 @@
             regras completas somente quando percebe que o seu pedido precisa delas.
           </p>
           <p>
-            Melhor ainda: você não precisa programar nem editar arquivos técnicos na mão. Em todo este curso vamos
-            seguir sempre o mesmo ciclo pela própria conversa:
+            Melhor ainda: você não precisa programar nem editar arquivos técnicos na mão. Vamos acompanhar passo a passo
+            pelo Gemini App ou pelo Claude App, mas a mesma lógica e o mesmo formato de skill funcionam também em
+            agentes de código como Antigravity e Claude Code. Em todo o curso seguimos este ciclo pela própria conversa:
           </p>
 
           <div class="flow-grid" style="grid-template-columns: repeat(3, 1fr);">
@@ -271,28 +270,6 @@ Time de Produto &amp; Engenharia</div>
               <p class="screenshot-caption">Painel lateral do Claude com o botão Save skill no canto superior.</p>
             </div>
           </div>
-
-          <div data-platform-content="antigravity">
-            <span class="platform-badge-inline">Antigravity</span>
-            <div class="prompt-box">
-              <div class="prompt-box-header">
-                <span>Mensagem 3 no Antigravity</span>
-                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
-              </div>
-              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma skill chamada escrita-sem-jargao salva no projeto, valendo para qualquer aviso interno ou mensagem entre times.</div>
-            </div>
-          </div>
-
-          <div data-platform-content="claude-code">
-            <span class="platform-badge-inline">Claude Code</span>
-            <div class="prompt-box">
-              <div class="prompt-box-header">
-                <span>Mensagem 3 no Claude Code</span>
-                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
-              </div>
-              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma skill chamada escrita-sem-jargao salva no projeto, valendo para qualquer aviso interno ou mensagem entre times.</div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -369,28 +346,6 @@ Time de Produto &amp; Engenharia</div>
               </div>
             </div>
           </div>
-
-          <div data-platform-content="antigravity">
-            <span class="platform-badge-inline">Onde ler no Antigravity</span>
-            <p>
-              O Antigravity mostra o arquivo criado na pasta de skills do projeto para leitura rápida ali mesmo ao lado
-              do chat.
-            </p>
-            <div class="screenshot-card screenshot-card-compact">
-              <img src="../../assets/antigravity_home.png"
-                alt="Editor do Antigravity à esquerda e painel de chat à direita"
-                class="screenshot-img" />
-              <p class="screenshot-caption">Você pode ler a skill gerada ou pedir ajustes direto pelo painel lateral.</p>
-            </div>
-          </div>
-
-          <div data-platform-content="claude-code">
-            <span class="platform-badge-inline">Onde ler no Claude Code</span>
-            <p>
-              O Claude Code exibe na conversa o resumo do que salvou na pasta de skills do projeto e aceita ajustes em
-              linguagem natural ali mesmo.
-            </p>
-          </div>
         </div>
       </div>
 
@@ -433,7 +388,8 @@ Time de Produto &amp; Engenharia</div>
       <p class="tutorial-intro">
         Quando pedimos um gráfico rápido para a IA sem dar critérios, o resultado quase sempre esconde a incerteza dos
         dados ou sai poluído: barras de erro atropelando números, falta de fonte e eixos difíceis de interpretar. Vamos
-        resolver isso com dados reais e transformar boas práticas de visualização em uma skill com Python.
+        resolver isso com dados reais usando código SVG, formato que desenha figuras nítidas direto no navegador até nas
+        versões gratuitas do Gemini App e do Claude App, onde a execução de Python não fica disponível.
       </p>
 
       <!-- Passo 2.1 -->
@@ -483,15 +439,15 @@ Time de Produto &amp; Engenharia</div>
           </div>
 
           <p>
-            Abra uma nova conversa e faça apenas o pedido ingênuo, sem definir expectativas visuais:
+            Abra uma nova conversa e peça primeiro um gráfico em SVG simples, ainda sem definir expectativas visuais:
           </p>
 
           <div class="prompt-box">
             <div class="prompt-box-header">
-              <span>Mensagem 1: apenas pedindo o gráfico</span>
+              <span>Mensagem 1: apenas pedindo o gráfico em SVG</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
-            <div class="prompt-box-body">Faça uma imagem de gráfico em Python com os dados deste estudo sobre passos por dia e risco de mortalidade: 3.553 passos (risco 1,00), 5.801 passos (risco 0,60, intervalo de 0,51 a 0,71), 7.842 passos (risco 0,55, intervalo de 0,49 a 0,62) e 10.901 passos (risco 0,47, intervalo de 0,39 a 0,57).</div>
+            <div class="prompt-box-body">Faça um gráfico em SVG com os dados deste estudo sobre passos por dia e risco de mortalidade: 3.553 passos (risco 1,00), 5.801 passos (risco 0,60, intervalo de 0,51 a 0,71), 7.842 passos (risco 0,55, intervalo de 0,49 a 0,62) e 10.901 passos (risco 0,47, intervalo de 0,39 a 0,57).</div>
           </div>
 
           <p>
@@ -537,7 +493,7 @@ Time de Produto &amp; Engenharia</div>
               <span>Mensagem 2: definindo o que um bom gráfico precisa ter</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
-            <div class="prompt-box-body">Refaça seguindo o que todo bom gráfico de dados deve ter: mostre pontos com barras de erro claras, destaque a linha tracejada de referência em 1,00 explicando na própria linha o que significa estar abaixo dela, posicione os valores acima das barras sem encostar nas linhas, tire as bordas do topo e da direita, indique no subtítulo que as barras representam intervalos de confiança de 95% (n = 47.471 adultos) e cite a fonte no rodapé: Paluch et al., The Lancet Public Health (2022).</div>
+            <div class="prompt-box-body">Refaça o gráfico em SVG seguindo o que todo bom gráfico de dados deve ter: mostre pontos com barras de erro claras, destaque a linha tracejada de referência em 1,00 explicando na própria linha o que significa estar abaixo dela, posicione os valores acima das barras sem encostar nas linhas, tire as bordas do topo e da direita, indique no subtítulo que as barras representam intervalos de confiança de 95% (n = 47.471 adultos) e cite a fonte no rodapé: Paluch et al., The Lancet Public Health (2022).</div>
           </div>
 
           <p>
@@ -570,7 +526,7 @@ Time de Produto &amp; Engenharia</div>
         <div class="step-body">
           <p>
             Esses princípios valem para qualquer gráfico com dados reais, não só para caminhada. Na mesma conversa, peça
-            para salvar os critérios junto com um modelo de código em Python:
+            para salvar os critérios junto com um modelo de código em SVG:
           </p>
 
           <div data-platform-content="gemini-app">
@@ -580,11 +536,11 @@ Time de Produto &amp; Engenharia</div>
                 <span>Mensagem 3 no Gemini App</span>
                 <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
               </div>
-              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter em uma habilidade chamada bom-grafico. Coloque o modelo de código matplotlib direto dentro do texto de instruções da habilidade, sem criar arquivos separados em anexo, e instrua a sempre executar o Python na conversa quando eu pedir um gráfico.</div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter em uma habilidade chamada bom-grafico. Coloque o modelo de código SVG direto dentro do texto de instruções da habilidade, sem criar arquivos separados em anexo, e instrua a sempre gerar o gráfico em SVG na conversa quando eu pedir um gráfico.</div>
             </div>
             <p style="margin-top: 1rem;">
-              Guardar o modelo de código dentro das próprias instruções da habilidade faz o Gemini executar o Python
-              direto na conversa nas próximas vezes, sem bloqueios de navegador:
+              Guardar o modelo de código SVG dentro das próprias instruções da habilidade faz o Gemini desenhar o
+              gráfico direto na conversa nas próximas vezes, inclusive na versão gratuita:
             </p>
             <div class="two-col" style="margin-top: 0.75rem;">
               <div class="screenshot-card">
@@ -595,7 +551,7 @@ Time de Produto &amp; Engenharia</div>
               </div>
               <div class="screenshot-card">
                 <img src="images/gemini_grafico_revisao.png"
-                  alt="Interior da habilidade bom-grafico mostrando os princípios estatísticos e de código matplotlib"
+                  alt="Interior da habilidade bom-grafico mostrando os princípios estatísticos e de código salvo"
                   class="screenshot-img" />
                 <p class="screenshot-caption">Expandindo em "Ver mais" aparecem os critérios visuais e estatísticos salvos.</p>
               </div>
@@ -609,34 +565,12 @@ Time de Produto &amp; Engenharia</div>
                 <span>Mensagem 3 no Claude App</span>
                 <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
               </div>
-              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico para usar sempre que eu pedir um gráfico.</div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o modelo de código SVG em uma skill chamada bom-grafico, instruindo a sempre mostrar o gráfico em SVG quando eu pedir um gráfico.</div>
             </div>
             <p style="margin-top: 1rem;">
               Confira as regras geradas no painel lateral e clique em <strong>Save skill</strong> para ativar na sua
               conta.
             </p>
-          </div>
-
-          <div data-platform-content="antigravity">
-            <span class="platform-badge-inline">Antigravity</span>
-            <div class="prompt-box">
-              <div class="prompt-box-header">
-                <span>Mensagem 3 no Antigravity</span>
-                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
-              </div>
-              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico salva no projeto para usar sempre que eu pedir um gráfico.</div>
-            </div>
-          </div>
-
-          <div data-platform-content="claude-code">
-            <span class="platform-badge-inline">Claude Code</span>
-            <div class="prompt-box">
-              <div class="prompt-box-header">
-                <span>Mensagem 3 no Claude Code</span>
-                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
-              </div>
-              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico salva no projeto para usar sempre que eu pedir um gráfico.</div>
-            </div>
           </div>
         </div>
       </div>
@@ -718,7 +652,7 @@ Time de Produto &amp; Engenharia</div>
               <span>Pedido combinando escrita + gráfico com incerteza</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
-            <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere a imagem de um gráfico em Python com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
+            <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere um gráfico em SVG com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
           </div>
 
           <p>
@@ -730,7 +664,7 @@ Time de Produto &amp; Engenharia</div>
           <div class="two-col">
             <div class="screenshot-card">
               <img src="images/gemini_composicao_grafico.png"
-                alt="Conversa nova no Gemini gerando gráfico em Python com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
+                alt="Conversa nova no Gemini gerando gráfico com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
                 class="screenshot-img" />
               <p class="screenshot-caption">A skill bom-grafico aplica sozinha linha de zero, intervalos limpos, amostras e fonte.</p>
             </div>
@@ -776,11 +710,11 @@ Time de Produto &amp; Engenharia</div>
               <tbody>
                 <tr>
                   <td>Galerias integradas</td>
-                  <td>Skills prontas para ativar com um clique dentro do Gemini App em <code>Personalizar &gt; Habilidades</code>, do Claude App em <code>Customize &gt; Discover</code> e do Antigravity.</td>
+                  <td>Skills prontas para ativar com um clique dentro do Gemini App em <code>Personalizar &gt; Habilidades</code> e do Claude App em <code>Customize &gt; Discover</code>.</td>
                 </tr>
                 <tr>
                   <td><a href="https://skills.sh" target="_blank" rel="noopener" class="inline-link">skills.sh</a></td>
-                  <td>Buscador público que reúne pacotes abertos da comunidade no GitHub para agentes de código.</td>
+                  <td>Buscador público com pacotes abertos da comunidade no GitHub, ótimo caso você use também agentes de código como Antigravity e Claude Code.</td>
                 </tr>
                 <tr>
                   <td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener" class="inline-link">anthropics/skills</a> e <a href="https://agentskills.io" target="_blank" rel="noopener" class="inline-link">agentskills.io</a></td>
