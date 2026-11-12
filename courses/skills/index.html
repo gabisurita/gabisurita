@@ -386,10 +386,8 @@ Time de Produto &amp; Engenharia</div>
       <div class="section-tag">Parte 2 · Exemplo 2</div>
       <h2 class="tutorial-title">Skill com código: O que todo bom gráfico deve ter</h2>
       <p class="tutorial-intro">
-        Quando pedimos um gráfico rápido para a IA sem dar critérios, o resultado quase sempre esconde a incerteza dos
-        dados ou sai poluído: barras de erro atropelando números, falta de fonte e eixos difíceis de interpretar. Vamos
-        resolver isso com dados reais usando código SVG, formato que desenha figuras nítidas direto no navegador até nas
-        versões gratuitas do Gemini App e do Claude App, onde a execução de Python não fica disponível.
+        Além de regras de texto, uma skill pode guardar um modelo de código para padronizar entregas visuais. Vamos
+        testar isso pedindo um gráfico em SVG<sup><a href="#nota-svg" id="ref-svg" class="footnote-ref">1</a></sup>.
       </p>
 
       <!-- Passo 2.1 -->
@@ -400,8 +398,8 @@ Time de Produto &amp; Engenharia</div>
         </div>
         <div class="step-body">
           <p>
-            Vamos usar os dados reais de uma grande meta-análise publicada por Paluch e colegas na revista
-            <em>The Lancet Public Health</em> sobre caminhada diária e risco relativo de mortalidade:
+            Vamos usar os dados de um estudo publicado na <em>The Lancet Public Health</em> sobre caminhada diária e
+            risco de mortalidade:
           </p>
 
           <div class="table-wrap">
@@ -439,7 +437,7 @@ Time de Produto &amp; Engenharia</div>
           </div>
 
           <p>
-            Abra uma nova conversa e peça primeiro um gráfico em SVG simples, ainda sem definir expectativas visuais:
+            Abra uma nova conversa e faça primeiro o pedido simples, sem definir regras visuais:
           </p>
 
           <div class="prompt-box">
@@ -451,67 +449,30 @@ Time de Produto &amp; Engenharia</div>
           </div>
 
           <p>
-            Veja na tabela abaixo os problemas que apareceram na resposta real do Gemini Flash e o que todo bom gráfico
-            de dados deve garantir:
-          </p>
-
-          <div class="table-wrap">
-            <table class="article-table">
-              <thead>
-                <tr>
-                  <th>O que saiu no pedido ingênuo</th>
-                  <th>O que todo bom gráfico de dados deve ter</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Barras de erro azuis atravessando o meio das caixas de texto com os números.</td>
-                  <td>Valores posicionados com respiro, sem encostar nas barras de incerteza nem nas linhas.</td>
-                </tr>
-                <tr>
-                  <td>Título vago, sem informar o tamanho da amostra nem o significado estatístico das barras.</td>
-                  <td>Título informativo acompanhado de subtítulo dizendo que as barras medem intervalos de confiança, junto com a amostra estudada.</td>
-                </tr>
-                <tr>
-                  <td>Caixa de legenda solta no canto e moldura pesada fechando os quatro lados.</td>
-                  <td>Explicação escrita direto na linha de referência indicando o que significa estar abaixo dela, sem bordas no topo e na direita.</td>
-                </tr>
-                <tr>
-                  <td>Nenhuma menção à origem dos dados na imagem.</td>
-                  <td>Fonte completa citada no rodapé para que a figura se sustente sozinha fora do chat.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p>
-            Agora envie na mesma conversa um segundo pedido definindo essas expectativas:
+            Na primeira tentativa, a figura sai poluída: barras cortam os rótulos, falta o tamanho da amostra e não
+            aparece a origem dos dados. Na mesma conversa, envie um segundo pedido corrigindo esses pontos<sup><a href="#nota-criterios" id="ref-criterios" class="footnote-ref">2</a></sup>:
           </p>
 
           <div class="prompt-box">
             <div class="prompt-box-header">
-              <span>Mensagem 2: definindo o que um bom gráfico precisa ter</span>
+              <span>Mensagem 2: ajustando o gráfico na conversa</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
             <div class="prompt-box-body">Refaça o gráfico em SVG seguindo o que todo bom gráfico de dados deve ter: mostre pontos com barras de erro claras, destaque a linha tracejada de referência em 1,00 explicando na própria linha o que significa estar abaixo dela, posicione os valores acima das barras sem encostar nas linhas, tire as bordas do topo e da direita, indique no subtítulo que as barras representam intervalos de confiança de 95% (n = 47.471 adultos) e cite a fonte no rodapé: Paluch et al., The Lancet Public Health (2022).</div>
           </div>
-
-          <p>
-            Compare o gráfico que saiu na primeira tentativa com a versão revisada no Gemini Flash:
-          </p>
 
           <div class="two-col">
             <div class="screenshot-card">
               <img src="images/gemini_grafico_antes.png"
                 alt="Gráfico ingênuo gerado pelo Gemini Flash com barras de erro atravessando os rótulos numéricos, moldura fechada e sem fonte no rodapé"
                 class="screenshot-img" />
-              <p class="screenshot-caption">Pedido ingênuo: barras de erro cortando os textos, sem amostra e sem fonte.</p>
+              <p class="screenshot-caption">Pedido ingênuo: barras cortando os textos, sem amostra e sem fonte.</p>
             </div>
             <div class="screenshot-card">
               <img src="images/gemini_grafico_depois.png"
                 alt="Gráfico corrigido no Gemini Flash com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
                 class="screenshot-img" />
-              <p class="screenshot-caption">Com boas práticas: incerteza legível, referência explicada e fonte no rodapé.</p>
+              <p class="screenshot-caption">Após o ajuste: incerteza legível, referência explicada e fonte no rodapé.</p>
             </div>
           </div>
         </div>
@@ -525,8 +486,7 @@ Time de Produto &amp; Engenharia</div>
         </div>
         <div class="step-body">
           <p>
-            Esses princípios valem para qualquer gráfico com dados reais, não só para caminhada. Na mesma conversa, peça
-            para salvar os critérios junto com um modelo de código em SVG:
+            Na mesma conversa, peça para salvar os critérios junto com um modelo de código SVG:
           </p>
 
           <div data-platform-content="gemini-app">
@@ -538,11 +498,7 @@ Time de Produto &amp; Engenharia</div>
               </div>
               <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter em uma habilidade chamada bom-grafico. Coloque o modelo de código SVG direto dentro do texto de instruções da habilidade, sem criar arquivos separados em anexo, e instrua a sempre gerar o gráfico em SVG na conversa quando eu pedir um gráfico.</div>
             </div>
-            <p style="margin-top: 1rem;">
-              Guardar o modelo de código SVG dentro das próprias instruções da habilidade faz o Gemini desenhar o
-              gráfico direto na conversa nas próximas vezes, inclusive na versão gratuita:
-            </p>
-            <div class="two-col" style="margin-top: 0.75rem;">
+            <div class="two-col" style="margin-top: 1rem;">
               <div class="screenshot-card">
                 <img src="images/gemini_grafico_criada.png"
                   alt="Card da habilidade bom-grafico criada e ativada na conversa do Gemini Flash"
@@ -553,7 +509,7 @@ Time de Produto &amp; Engenharia</div>
                 <img src="images/gemini_grafico_revisao.png"
                   alt="Interior da habilidade bom-grafico mostrando os princípios estatísticos e de código salvo"
                   class="screenshot-img" />
-                <p class="screenshot-caption">Expandindo em "Ver mais" aparecem os critérios visuais e estatísticos salvos.</p>
+                <p class="screenshot-caption">Expandindo em "Ver mais" aparecem os critérios e o código salvos.</p>
               </div>
             </div>
           </div>
@@ -574,6 +530,24 @@ Time de Produto &amp; Engenharia</div>
           </div>
         </div>
       </div>
+
+      <!-- Notas de rodapé da Parte 2 -->
+      <aside class="section-footnotes" aria-label="Notas da seção">
+        <p id="nota-svg">
+          <strong>1.</strong> Usamos SVG porque tanto o Gemini App quanto o Claude App renderizam figuras SVG direto no
+          navegador até nas contas gratuitas, onde a execução de Python não fica liberada. Guardar o molde de código
+          dentro do próprio texto da skill também evita bloqueios de arquivos em anexo. Em planos pagos ou agentes
+          locais, a mesma ideia funciona com Python e <code>matplotlib</code>.
+          <a href="#ref-svg" class="footnote-back" aria-label="Voltar ao texto">↩</a>
+        </p>
+        <p id="nota-criterios">
+          <strong>2.</strong> Nos dados de Paluch e colegas, <code>1,00</code> representa o grupo de base e valores
+          abaixo dessa linha indicam menor risco de mortalidade entre os adultos avaliados, com as barras marcando o
+          intervalo de confiança. Explicar a linha de referência na própria figura, dar respiro aos números, remover
+          bordas extras e citar a fonte no rodapé faz o gráfico se sustentar sozinho fora do chat.
+          <a href="#ref-criterios" class="footnote-back" aria-label="Voltar ao texto">↩</a>
+        </p>
+      </aside>
     </div>
   </section>
 
