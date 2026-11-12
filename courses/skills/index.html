@@ -386,8 +386,7 @@ Time de Produto &amp; Engenharia</div>
       <div class="section-tag">Parte 2 · Exemplo 2</div>
       <h2 class="tutorial-title">Skill com código: O que todo bom gráfico deve ter</h2>
       <p class="tutorial-intro">
-        Além de regras de texto, uma skill pode guardar um modelo de código para padronizar entregas visuais. Vamos
-        testar isso pedindo um gráfico em SVG<sup><a href="#nota-svg" id="ref-svg" class="footnote-ref">1</a></sup>.
+        Além de regras de texto, uma skill pode guardar um modelo de código para padronizar entregas visuais.
       </p>
 
       <!-- Passo 2.1 -->
@@ -442,15 +441,15 @@ Time de Produto &amp; Engenharia</div>
 
           <div class="prompt-box">
             <div class="prompt-box-header">
-              <span>Mensagem 1: apenas pedindo o gráfico em SVG</span>
+              <span>Mensagem 1: apenas pedindo o gráfico</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
-            <div class="prompt-box-body">Faça um gráfico em SVG com os dados deste estudo sobre passos por dia e risco de mortalidade: 3.553 passos (risco 1,00), 5.801 passos (risco 0,60, intervalo de 0,51 a 0,71), 7.842 passos (risco 0,55, intervalo de 0,49 a 0,62) e 10.901 passos (risco 0,47, intervalo de 0,39 a 0,57).</div>
+            <div class="prompt-box-body">Faça um gráfico com os dados deste estudo sobre passos por dia e risco de mortalidade: 3.553 passos (risco 1,00), 5.801 passos (risco 0,60, intervalo de 0,51 a 0,71), 7.842 passos (risco 0,55, intervalo de 0,49 a 0,62) e 10.901 passos (risco 0,47, intervalo de 0,39 a 0,57).</div>
           </div>
 
           <p>
-            Na primeira tentativa, a figura sai poluída: barras cortam os rótulos, falta o tamanho da amostra e não
-            aparece a origem dos dados. Na mesma conversa, envie um segundo pedido corrigindo esses pontos<sup><a href="#nota-criterios" id="ref-criterios" class="footnote-ref">2</a></sup>:
+            Na primeira tentativa, faltam o tamanho da amostra, o significado da linha de referência e a fonte dos
+            dados no rodapé. Na mesma conversa, peça os ajustes visuais<sup><a href="#nota-criterios" id="ref-criterios" class="footnote-ref">1</a></sup> passando o gráfico para SVG<sup><a href="#nota-svg" id="ref-svg" class="footnote-ref">2</a></sup>:
           </p>
 
           <div class="prompt-box">
@@ -464,15 +463,15 @@ Time de Produto &amp; Engenharia</div>
           <div class="two-col">
             <div class="screenshot-card">
               <img src="images/gemini_grafico_antes.png"
-                alt="Gráfico ingênuo gerado pelo Gemini Flash com barras de erro atravessando os rótulos numéricos, moldura fechada e sem fonte no rodapé"
+                alt="Gráfico inicial gerado pelo Gemini sem tamanho da amostra, sem explicação da linha de referência e sem fonte no rodapé"
                 class="screenshot-img" />
-              <p class="screenshot-caption">Pedido ingênuo: barras cortando os textos, sem amostra e sem fonte.</p>
+              <p class="screenshot-caption">Pedido inicial: sem amostra, sem explicação da linha de base e sem fonte.</p>
             </div>
             <div class="screenshot-card">
               <img src="images/gemini_grafico_depois.png"
-                alt="Gráfico corrigido no Gemini Flash com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
+                alt="Gráfico em SVG corrigido no Gemini com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
                 class="screenshot-img" />
-              <p class="screenshot-caption">Após o ajuste: incerteza legível, referência explicada e fonte no rodapé.</p>
+              <p class="screenshot-caption">Após o ajuste em SVG: referência explicada, amostra no subtítulo e fonte no rodapé.</p>
             </div>
           </div>
         </div>
@@ -501,15 +500,15 @@ Time de Produto &amp; Engenharia</div>
             <div class="two-col" style="margin-top: 1rem;">
               <div class="screenshot-card">
                 <img src="images/gemini_grafico_criada.png"
-                  alt="Card da habilidade bom-grafico criada e ativada na conversa do Gemini Flash"
+                  alt="Resposta no Gemini estruturando a habilidade bom-grafico com princípios visuais e saída em SVG"
                   class="screenshot-img" />
-                <p class="screenshot-caption">A habilidade bom-grafico fica salva e ativa para futuros pedidos.</p>
+                <p class="screenshot-caption">O Gemini estrutura os critérios e o molde SVG da habilidade bom-grafico.</p>
               </div>
               <div class="screenshot-card">
                 <img src="images/gemini_grafico_revisao.png"
-                  alt="Interior da habilidade bom-grafico mostrando os princípios estatísticos e de código salvo"
+                  alt="Tela de Habilidades no Gemini mostrando nome, descrição e instruções em SVG da habilidade bom-grafico"
                   class="screenshot-img" />
-                <p class="screenshot-caption">Expandindo em "Ver mais" aparecem os critérios e o código salvos.</p>
+                <p class="screenshot-caption">Em Habilidades ficam salvos o nome, a descrição e as regras em SVG.</p>
               </div>
             </div>
           </div>
@@ -533,19 +532,19 @@ Time de Produto &amp; Engenharia</div>
 
       <!-- Notas de rodapé da Parte 2 -->
       <aside class="section-footnotes" aria-label="Notas da seção">
-        <p id="nota-svg">
-          <strong>1.</strong> Usamos SVG porque tanto o Gemini App quanto o Claude App renderizam figuras SVG direto no
-          navegador até nas contas gratuitas, onde a execução de Python não fica liberada. Guardar o molde de código
-          dentro do próprio texto da skill também evita bloqueios de arquivos em anexo. Em planos pagos ou agentes
-          locais, a mesma ideia funciona com Python e <code>matplotlib</code>.
-          <a href="#ref-svg" class="footnote-back" aria-label="Voltar ao texto">↩</a>
-        </p>
         <p id="nota-criterios">
-          <strong>2.</strong> Nos dados de Paluch e colegas, <code>1,00</code> representa o grupo de base e valores
+          <strong>1.</strong> Nos dados de Paluch e colegas, <code>1,00</code> representa o grupo de base e valores
           abaixo dessa linha indicam menor risco de mortalidade entre os adultos avaliados, com as barras marcando o
           intervalo de confiança. Explicar a linha de referência na própria figura, dar respiro aos números, remover
           bordas extras e citar a fonte no rodapé faz o gráfico se sustentar sozinho fora do chat.
           <a href="#ref-criterios" class="footnote-back" aria-label="Voltar ao texto">↩</a>
+        </p>
+        <p id="nota-svg">
+          <strong>2.</strong> Passamos para SVG antes de criar a skill porque tanto o Gemini App quanto o Claude App
+          renderizam figuras SVG direto no navegador até nas contas gratuitas, onde a execução de Python não fica
+          liberada. Guardar o molde de código dentro do próprio texto da skill também evita bloqueios de arquivos em
+          anexo. Em planos pagos ou agentes locais, a mesma ideia funciona com Python e <code>matplotlib</code>.
+          <a href="#ref-svg" class="footnote-back" aria-label="Voltar ao texto">↩</a>
         </p>
       </aside>
     </div>
@@ -626,27 +625,27 @@ Time de Produto &amp; Engenharia</div>
               <span>Pedido combinando escrita + gráfico com incerteza</span>
               <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
             </div>
-            <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere um gráfico em SVG com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
+            <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere um gráfico com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
           </div>
 
           <p>
-            Veja o resultado real no Gemini: a <code>bom-grafico</code> destacou a linha de zero mostrando na hora que a
-            queda se concentrou em quem não ocupa cargo de gestão e que o intervalo dos gestores cruza o zero, enquanto
-            a <code>escrita-sem-jargao</code> organizou o comunicado de forma direta com tabela:
+            Veja o resultado real no Gemini: a <code>escrita-sem-jargao</code> abriu a resposta com um comunicado
+            direto e tabela simples, enquanto a <code>bom-grafico</code> gerou logo abaixo o gráfico em SVG destacando
+            a linha de zero e a fonte:
           </p>
 
           <div class="two-col">
             <div class="screenshot-card">
-              <img src="images/gemini_composicao_grafico.png"
-                alt="Conversa nova no Gemini gerando gráfico com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
+              <img src="images/gemini_composicao_texto.png"
+                alt="Início da resposta no Gemini com comunicado direto para o RH e tabela comparativa dos três perfis do experimento da Trip.com"
                 class="screenshot-img" />
-              <p class="screenshot-caption">A skill bom-grafico aplica sozinha linha de zero, intervalos limpos, amostras e fonte.</p>
+              <p class="screenshot-caption">O comunicado abre a resposta seguindo a escrita-sem-jargao com frases curtas e tabela.</p>
             </div>
             <div class="screenshot-card">
-              <img src="images/gemini_composicao_texto.png"
-                alt="Continuação da mesma resposta no Gemini com comunicado direto para o RH e tabela comparativa dos três perfis"
+              <img src="images/gemini_composicao_grafico.png"
+                alt="Continuação da mesma resposta no Gemini gerando gráfico em SVG com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
                 class="screenshot-img" />
-              <p class="screenshot-caption">Na mesma resposta, o comunicado segue a escrita-sem-jargao com frases curtas e tabela.</p>
+              <p class="screenshot-caption">Logo abaixo, a skill bom-grafico entrega o gráfico em SVG com linha de zero, amostras e fonte.</p>
             </div>
           </div>
         </div>
