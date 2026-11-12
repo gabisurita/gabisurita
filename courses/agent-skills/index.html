@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-selected-platform="gemini-app">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pare de repetir prompt: crie skills reutilizáveis para agentes de IA | Gabi Surita</title>
+  <meta name="description"
+    content="Aprenda na prática a transformar instruções recorrentes e gráficos padronizados em skills reutilizáveis para Gemini App, Claude App, Antigravity e Claude Code." />
+  <script>
+    (function () {
+      var savedPlatform = localStorage.getItem('skills-course-platform-v2');
+      var valid = ['antigravity', 'claude-code', 'gemini-app', 'claude-app'];
+      if (savedPlatform && valid.indexOf(savedPlatform) !== -1) {
+        document.documentElement.setAttribute('data-selected-platform', savedPlatform);
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <link rel="stylesheet" href="../vibecoding/style.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Theme toggle fixed -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="Mudar para modo claro"
+    style="position:fixed;top:1.25rem;right:1.5rem;z-index:200;">☀️</button>
+
+  <!-- COURSE HERO -->
+  <section class="course-hero" style="min-height: 50vh; padding: 6rem 0 4rem;">
+    <div class="course-hero-bg"></div>
+    <div class="container skills-container course-hero-inner">
+      <a href="../../#courses" class="breadcrumb">← Voltar para cursos</a>
+      <div class="partnership-badges">
+        <span class="partner-badge partner-badge-prog">Programaria</span>
+      </div>
+      <h1 class="course-hero-title skills-hero-title">Pare de repetir prompt: crie skills reutilizáveis para agentes de IA</h1>
+      <p class="course-hero-subtitle">
+        Resolva uma tarefa conversando com a IA uma vez, salve o que funcionou como uma skill e pare de explicar as
+        mesmas regras toda semana.
+      </p>
+
+      <div class="toc">
+        <div class="toc-item" onclick="scrollToSec('#parte-0')">
+          <span class="toc-num">0</span>
+          <span class="toc-label">O Problema</span>
+        </div>
+        <div class="toc-sep">→</div>
+        <div class="toc-item" onclick="scrollToSec('#parte-1')">
+          <span class="toc-num">1</span>
+          <span class="toc-label">Skill de Texto</span>
+        </div>
+        <div class="toc-sep">→</div>
+        <div class="toc-item" onclick="scrollToSec('#parte-2')">
+          <span class="toc-num">2</span>
+          <span class="toc-label">Skill de Gráfico</span>
+        </div>
+        <div class="toc-sep">→</div>
+        <div class="toc-item" onclick="scrollToSec('#parte-3')">
+          <span class="toc-num">3</span>
+          <span class="toc-label">Composição</span>
+        </div>
+        <div class="toc-sep">→</div>
+        <div class="toc-item" onclick="scrollToSec('#parte-4')">
+          <span class="toc-num">4</span>
+          <span class="toc-label">Próximos Passos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKY PLATFORM SELECTOR -->
+  <div class="platform-bar" id="platform-bar">
+    <div class="container skills-container platform-bar-inner">
+      <div class="platform-bar-label">
+        <span>Escolha por onde acompanhar:</span>
+      </div>
+      <div class="platform-tabs" role="tablist" aria-label="Plataforma do tutorial">
+        <button class="platform-tab active" type="button" data-platform-btn="gemini-app">Gemini App</button>
+        <button class="platform-tab" type="button" data-platform-btn="claude-app">Claude App</button>
+        <button class="platform-tab" type="button" data-platform-btn="antigravity">Antigravity</button>
+        <button class="platform-tab" type="button" data-platform-btn="claude-code">Claude Code</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       PARTE 0: O PROBLEMA
+  ============================================= -->
+  <section class="tutorial-section" id="parte-0">
+    <div class="container skills-container">
+      <div class="section-tag">Parte 0 · Ponto de partida</div>
+      <h2 class="tutorial-title">Você já cansou de corrigir a mesma coisa todo dia?</h2>
+      <p class="tutorial-intro">
+        Você abre o chat da IA para escrever um aviso de trabalho. A resposta vem cheia de emojis de foguete, elogios
+        exagerados e parágrafos longos. Você gasta várias mensagens pedindo para enxugar o texto. No dia seguinte abre
+        outra conversa e precisa explicar tudo de novo.
+      </p>
+
+      <div class="step-card">
+        <div class="step-body">
+          <p>
+            Na programação existe um princípio clássico chamado <em>Don't Repeat Yourself</em>, expressão em inglês que
+            significa "não se repita" e costuma aparecer abreviada como DRY. A lógica é simples: se você copia o mesmo
+            trecho de código em vários lugares, qualquer ajuste vira retrabalho. Em vez de copiar e colar, você guarda
+            aquela lógica em uma função reutilizável.
+          </p>
+          <p>
+            Uma <strong>skill</strong>, chamada de "habilidade" na interface em português do Gemini, faz exatamente isso
+            para conversas com IA. Ela guarda um jeito de trabalhar que você já testou e aprovou. O agente não fica
+            lendo todas as suas skills o tempo inteiro: ele olha apenas uma frase curta de descrição e carrega as
+            regras completas somente quando percebe que o seu pedido precisa delas.
+          </p>
+          <p>
+            Melhor ainda: você não precisa programar nem editar arquivos técnicos na mão. Em todo este curso vamos
+            seguir sempre o mesmo ciclo pela própria conversa:
+          </p>
+
+          <div class="flow-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="flow-step">
+              <span class="flow-step-num">1. Resolver no chat</span>
+              <div class="flow-step-title">Ajuste um caso real</div>
+              <p class="flow-step-desc">Converse normalmente até a resposta ficar do jeito que você gosta.</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step-num">2. Extrair</span>
+              <div class="flow-step-title">Peça para virar skill</div>
+              <p class="flow-step-desc">Mande uma frase pedindo para o próprio modelo salvar o padrão usado.</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step-num">3. Revisar</span>
+              <div class="flow-step-title">Leia o que foi salvo</div>
+              <p class="flow-step-desc">Confira se as regras servem para outras situações antes de reutilizar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PARTE 1: EXEMPLO 1 (SKILL DE TEXTO)
+  ============================================= -->
+  <section class="tutorial-section" id="parte-1">
+    <div class="container skills-container">
+      <div class="section-tag">Parte 1 · Exemplo 1</div>
+      <h2 class="tutorial-title">Sua primeira skill: Escrita sem Jargão</h2>
+      <p class="tutorial-intro">
+        Vamos começar com uma skill feita apenas de regras de texto. A ideia é transformar comunicados internos e
+        explicações técnicas em mensagens diretas, sem jargão desnecessário e sem cara de texto automático.
+      </p>
+
+      <!-- Passo 1.1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1.1</div>
+          <h3 class="step-title">Resolva um caso real na conversa</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Abra um chat comum na ferramenta escolhida e envie este pedido simples de trabalho:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Mensagem 1: o pedido inicial</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Escreva um comunicado interno para o resto da empresa contando que lançamos o novo fluxo de cadastro do app. Antes 14% das pessoas completavam o cadastro e agora nas primeiras duas semanas subiu para 19%, além de termos diminuído o tempo de resposta da API de 850ms para 210ms.</div>
+          </div>
+
+          <p>
+            Quando fizemos exatamente esse pedido no Gemini Flash sem nenhuma skill ativa, esta foi a resposta real do
+            modelo:
+          </p>
+
+          <div class="compare-card compare-card-bad">
+            <div class="compare-header">Resposta real do Gemini Flash sem skill</div>
+            <div class="compare-body">Assunto: 🚀 Grande novidade: Novo fluxo de cadastro no ar com resultados incríveis!
+
+Fala, time!
+
+Temos uma notícia super especial para compartilhar com toda a empresa! Lançamos recentemente o novo fluxo de cadastro do nosso aplicativo e os resultados dessas duas primeiras semanas já mostram o impacto incrível do trabalho em equipe:
+
+* <strong>Aumento na conversão:</strong> A taxa de conclusão de cadastro saltou de 14% para 19% — um crescimento expressivo que significa muito mais usuários ativos e aproveitando nossa plataforma logo no primeiro contato!
+* <strong>API muito mais rápida:</strong> Otimizamos a infraestrutura e reduzimos o tempo de resposta de 850ms para impressionantes 210ms, proporcionando uma experiência muito mais ágil, estável e fluida para quem usa o app.
+
+Esse marco é resultado direto da dedicação e colaboração entre Produto, Design e Engenharia, sempre focados em entregar a melhor experiência possível.
+
+Parabéns a todas as pessoas envolvidas nessa conquista e vamos juntos rumo aos próximos desafios! 🎉👏
+
+Um abraço,
+Time de Produto &amp; Engenharia</div>
+          </div>
+
+          <p>
+            Agora, na mesma conversa, responda corrigindo os vícios do texto como você explicaria para alguém do seu
+            time:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Mensagem 2: ajustando o estilo na conversa</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Reescreva de forma direta: tire os emojis, corte elogios exagerados como "impacto incrível", "impressionantes" e "marco", não use travessões nem tópicos com título em negrito, troque termos técnicos pelo efeito prático para quem usa o app e coloque os números em uma tabela simples.</div>
+          </div>
+
+          <p>
+            O texto vai encolher para poucas frases limpas seguidas de uma tabela fácil de bater o olho.
+          </p>
+        </div>
+      </div>
+
+      <!-- Passo 1.2 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1.2</div>
+          <h3 class="step-title">Peça para transformar o que funcionou em skill</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Gostou da nova resposta? Em vez de repetir essas correções na semana que vem, mande uma única frase na mesma
+            conversa para o modelo montar a skill por você:
+          </p>
+
+          <div data-platform-content="gemini-app">
+            <span class="platform-badge-inline">Gemini App</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Gemini App</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma habilidade chamada escrita-sem-jargao, valendo para qualquer aviso interno ou mensagem entre times.</div>
+            </div>
+            <p style="margin-top: 1rem;">
+              No Gemini App, você nem precisa sair da conversa: ele mesmo cria, salva e ativa a habilidade para os
+              próximos chats.
+            </p>
+            <div class="screenshot-card screenshot-card-compact" style="margin-top: 0.75rem;">
+              <img src="images/gemini_skill_criada.png"
+                alt="Gemini confirmando que a habilidade escrita-sem-jargao foi criada, salva e ativada pelo chat"
+                class="screenshot-img" />
+              <p class="screenshot-caption">O Gemini confirma a criação da habilidade direto na conversa.</p>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-app">
+            <span class="platform-badge-inline">Claude App</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Claude App</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma skill chamada escrita-sem-jargao, valendo para qualquer aviso interno ou mensagem entre times.</div>
+            </div>
+            <p style="margin-top: 1rem;">
+              O Claude abre um painel ao lado da conversa com a skill pronta e o botão <strong>Save skill</strong> no
+              topo para salvar direto na sua conta:
+            </p>
+            <div class="screenshot-card screenshot-card-compact" style="margin-top: 0.75rem;">
+              <img src="images/claude_skill_gerada.png"
+                alt="Painel do Claude App mostrando a skill escrita-sem-jargao pronta com o botão Save skill no topo"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Painel lateral do Claude com o botão Save skill no canto superior.</p>
+            </div>
+          </div>
+
+          <div data-platform-content="antigravity">
+            <span class="platform-badge-inline">Antigravity</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Antigravity</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma skill chamada escrita-sem-jargao salva no projeto, valendo para qualquer aviso interno ou mensagem entre times.</div>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-code">
+            <span class="platform-badge-inline">Claude Code</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Claude Code</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme essas regras de escrita que acabamos de usar em uma skill chamada escrita-sem-jargao salva no projeto, valendo para qualquer aviso interno ou mensagem entre times.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 1.3 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1.3</div>
+          <h3 class="step-title">Leia as regras geradas antes de seguir</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            O próprio agente cuida da estrutura técnica do arquivo por trás dos panos. Na revisão você só precisa ler o
+            texto em português e conferir estes pontos:
+          </p>
+
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>O que olhar</th>
+                  <th>Por que importa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Descrição de quando usar</td>
+                  <td>A frase de abertura precisa deixar claro em quais pedidos a skill deve entrar em ação, como redigir avisos internos ou traduzir explicações técnicas.</td>
+                </tr>
+                <tr>
+                  <td>Regras gerais, não presas ao exemplo do dia</td>
+                  <td>Às vezes a IA copia detalhes demais do exemplo anterior, como falar especificamente de "cadastro do app". As regras devem servir para qualquer assunto futuro.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Se notar algum exagero ou detalhe específico demais, não precisa editar nada na mão: basta responder no
+            próprio chat pedindo para ajustar a skill.
+          </p>
+
+          <div data-platform-content="gemini-app">
+            <span class="platform-badge-inline">Onde ler no Gemini App</span>
+            <p>
+              Clique em <strong>Ver mais</strong> no card da habilidade para ler o resumo completo que ficou salvo.
+            </p>
+            <div class="screenshot-card screenshot-card-compact">
+              <img src="images/gemini_skill_revisao.png"
+                alt="Card expandido no Gemini mostrando as regras completas da habilidade escrita-sem-jargao"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Expandindo o card em "Ver mais" para conferir as regras salvas.</p>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-app">
+            <span class="platform-badge-inline">Onde revisar e salvar no Claude App</span>
+            <p>
+              Leia a prévia da skill no painel direito e clique em <strong>Save skill</strong>. Quando quiser ver suas
+              skills ativas ou enviar uma skill recebida de outra pessoa, elas ficam reunidas em
+              <code>Customize &gt; Skills</code>.
+            </p>
+            <div class="two-col">
+              <div class="screenshot-card">
+                <img src="images/claude_customize_skills.png"
+                  alt="Menu Customize > Skills no Claude App"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Menu Customize &gt; Skills onde ficam suas skills salvas.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/claude_upload_skill.png"
+                  alt="Tela Upload a skill no Claude App para importar skills externas"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Opção Upload skill caso queira importar o arquivo de outra pessoa.</p>
+              </div>
+            </div>
+          </div>
+
+          <div data-platform-content="antigravity">
+            <span class="platform-badge-inline">Onde ler no Antigravity</span>
+            <p>
+              O Antigravity mostra o arquivo criado na pasta de skills do projeto para leitura rápida ali mesmo ao lado
+              do chat.
+            </p>
+            <div class="screenshot-card screenshot-card-compact">
+              <img src="../../assets/antigravity_home.png"
+                alt="Editor do Antigravity à esquerda e painel de chat à direita"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Você pode ler a skill gerada ou pedir ajustes direto pelo painel lateral.</p>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-code">
+            <span class="platform-badge-inline">Onde ler no Claude Code</span>
+            <p>
+              O Claude Code exibe na conversa o resumo do que salvou na pasta de skills do projeto e aceita ajustes em
+              linguagem natural ali mesmo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 1.4 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">1.4</div>
+          <h3 class="step-title">Teste em uma conversa nova sem repetir as regras</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Abra uma conversa nova do zero e mande este pedido cheio de siglas técnicas, sem falar nada sobre emojis,
+            travessões ou tabelas:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Teste em uma conversa nova</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Escreva uma mensagem rápida para o time de atendimento explicando por que alguns pagamentos PIX falharam hoje cedo: tivemos um gargalo no pool de conexões do banco às 9h, o que deu timeout no webhook e gerou retentativas duplicadas. Subimos um hotfix e normalizou às 9h40.</div>
+          </div>
+
+          <p>
+            O agente reconhece que se trata de uma mensagem entre áreas, ativa a <code>escrita-sem-jargao</code> sozinho
+            e entrega o aviso já em linguagem humana.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PARTE 2: EXEMPLO 2 (GRÁFICOS CIENTÍFICOS)
+  ============================================= -->
+  <section class="tutorial-section" id="parte-2">
+    <div class="container skills-container">
+      <div class="section-tag">Parte 2 · Exemplo 2</div>
+      <h2 class="tutorial-title">Skill com código: O que todo bom gráfico deve ter</h2>
+      <p class="tutorial-intro">
+        Quando pedimos um gráfico rápido para a IA sem dar critérios, o resultado quase sempre esconde a incerteza dos
+        dados ou sai poluído: barras de erro atropelando números, falta de fonte e eixos difíceis de interpretar. Vamos
+        resolver isso com dados reais e transformar boas práticas de visualização em uma skill com Python.
+      </p>
+
+      <!-- Passo 2.1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">2.1</div>
+          <h3 class="step-title">Peça primeiro um gráfico simples e veja o que sai</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Vamos usar os dados reais de uma grande meta-análise publicada por Paluch e colegas na revista
+            <em>The Lancet Public Health</em> sobre caminhada diária e risco relativo de mortalidade:
+          </p>
+
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Grupo por mediana diária</th>
+                  <th>Razão de risco de mortalidade</th>
+                  <th>Intervalo de confiança de 95%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>3.553</code> passos por dia</td>
+                  <td><code>1,00</code> · grupo de referência</td>
+                  <td>Linha de base</td>
+                </tr>
+                <tr>
+                  <td><code>5.801</code> passos por dia</td>
+                  <td><code>0,60</code></td>
+                  <td><code>0,51</code> a <code>0,71</code></td>
+                </tr>
+                <tr>
+                  <td><code>7.842</code> passos por dia</td>
+                  <td><code>0,55</code></td>
+                  <td><code>0,49</code> a <code>0,62</code></td>
+                </tr>
+                <tr>
+                  <td><code>10.901</code> passos por dia</td>
+                  <td><code>0,47</code></td>
+                  <td><code>0,39</code> a <code>0,57</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Abra uma nova conversa e faça apenas o pedido ingênuo, sem definir expectativas visuais:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Mensagem 1: apenas pedindo o gráfico</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Faça uma imagem de gráfico em Python com os dados deste estudo sobre passos por dia e risco de mortalidade: 3.553 passos (risco 1,00), 5.801 passos (risco 0,60, intervalo de 0,51 a 0,71), 7.842 passos (risco 0,55, intervalo de 0,49 a 0,62) e 10.901 passos (risco 0,47, intervalo de 0,39 a 0,57).</div>
+          </div>
+
+          <p>
+            Veja na tabela abaixo os problemas que apareceram na resposta real do Gemini Flash e o que todo bom gráfico
+            de dados deve garantir:
+          </p>
+
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>O que saiu no pedido ingênuo</th>
+                  <th>O que todo bom gráfico de dados deve ter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Barras de erro azuis atravessando o meio das caixas de texto com os números.</td>
+                  <td>Valores posicionados com respiro, sem encostar nas barras de incerteza nem nas linhas.</td>
+                </tr>
+                <tr>
+                  <td>Título vago, sem informar o tamanho da amostra nem o significado estatístico das barras.</td>
+                  <td>Título informativo acompanhado de subtítulo dizendo que as barras medem intervalos de confiança, junto com a amostra estudada.</td>
+                </tr>
+                <tr>
+                  <td>Caixa de legenda solta no canto e moldura pesada fechando os quatro lados.</td>
+                  <td>Explicação escrita direto na linha de referência indicando o que significa estar abaixo dela, sem bordas no topo e na direita.</td>
+                </tr>
+                <tr>
+                  <td>Nenhuma menção à origem dos dados na imagem.</td>
+                  <td>Fonte completa citada no rodapé para que a figura se sustente sozinha fora do chat.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Agora envie na mesma conversa um segundo pedido definindo essas expectativas:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Mensagem 2: definindo o que um bom gráfico precisa ter</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Refaça seguindo o que todo bom gráfico de dados deve ter: mostre pontos com barras de erro claras, destaque a linha tracejada de referência em 1,00 explicando na própria linha o que significa estar abaixo dela, posicione os valores acima das barras sem encostar nas linhas, tire as bordas do topo e da direita, indique no subtítulo que as barras representam intervalos de confiança de 95% (n = 47.471 adultos) e cite a fonte no rodapé: Paluch et al., The Lancet Public Health (2022).</div>
+          </div>
+
+          <p>
+            Compare o gráfico que saiu na primeira tentativa com a versão revisada no Gemini Flash:
+          </p>
+
+          <div class="two-col">
+            <div class="screenshot-card">
+              <img src="images/gemini_grafico_antes.png"
+                alt="Gráfico ingênuo gerado pelo Gemini Flash com barras de erro atravessando os rótulos numéricos, moldura fechada e sem fonte no rodapé"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Pedido ingênuo: barras de erro cortando os textos, sem amostra e sem fonte.</p>
+            </div>
+            <div class="screenshot-card">
+              <img src="images/gemini_grafico_depois.png"
+                alt="Gráfico corrigido no Gemini Flash com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Com boas práticas: incerteza legível, referência explicada e fonte no rodapé.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Passo 2.2 -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">2.2</div>
+          <h3 class="step-title">Transforme esses critérios e o código base em skill</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Esses princípios valem para qualquer gráfico com dados reais, não só para caminhada. Na mesma conversa, peça
+            para salvar os critérios junto com um modelo de código em Python:
+          </p>
+
+          <div data-platform-content="gemini-app">
+            <span class="platform-badge-inline">Gemini App</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Gemini App</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter em uma habilidade chamada bom-grafico. Coloque o modelo de código matplotlib direto dentro do texto de instruções da habilidade, sem criar arquivos separados em anexo, e instrua a sempre executar o Python na conversa quando eu pedir um gráfico.</div>
+            </div>
+            <p style="margin-top: 1rem;">
+              Guardar o modelo de código dentro das próprias instruções da habilidade faz o Gemini executar o Python
+              direto na conversa nas próximas vezes, sem bloqueios de navegador:
+            </p>
+            <div class="two-col" style="margin-top: 0.75rem;">
+              <div class="screenshot-card">
+                <img src="images/gemini_grafico_criada.png"
+                  alt="Card da habilidade bom-grafico criada e ativada na conversa do Gemini Flash"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">A habilidade bom-grafico fica salva e ativa para futuros pedidos.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/gemini_grafico_revisao.png"
+                  alt="Interior da habilidade bom-grafico mostrando os princípios estatísticos e de código matplotlib"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Expandindo em "Ver mais" aparecem os critérios visuais e estatísticos salvos.</p>
+              </div>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-app">
+            <span class="platform-badge-inline">Claude App</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Claude App</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico para usar sempre que eu pedir um gráfico.</div>
+            </div>
+            <p style="margin-top: 1rem;">
+              Confira as regras geradas no painel lateral e clique em <strong>Save skill</strong> para ativar na sua
+              conta.
+            </p>
+          </div>
+
+          <div data-platform-content="antigravity">
+            <span class="platform-badge-inline">Antigravity</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Antigravity</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico salva no projeto para usar sempre que eu pedir um gráfico.</div>
+            </div>
+          </div>
+
+          <div data-platform-content="claude-code">
+            <span class="platform-badge-inline">Claude Code</span>
+            <div class="prompt-box">
+              <div class="prompt-box-header">
+                <span>Mensagem 3 no Claude Code</span>
+                <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+              </div>
+              <div class="prompt-box-body">Transforme esses princípios do que todo bom gráfico com incerteza deve ter e o código base em matplotlib em uma skill chamada bom-grafico salva no projeto para usar sempre que eu pedir um gráfico.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PARTE 3: COMPOSIÇÃO DE SKILLS
+  ============================================= -->
+  <section class="tutorial-section" id="parte-3">
+    <div class="container skills-container">
+      <div class="section-tag">Parte 3 · Composição</div>
+      <h2 class="tutorial-title">As duas skills trabalhando juntas</h2>
+      <p class="tutorial-intro">
+        Boas funções fazem uma coisa só e se combinam bem. Como deixamos uma skill cuidando da clareza do texto e outra
+        cuidando do rigor visual dos gráficos, o agente consegue acionar as duas juntas em qualquer tema novo.
+      </p>
+
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">3.1</div>
+          <h3 class="step-title">Outro estudo real, sem repetir nenhuma instrução</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Abra uma conversa nova do zero. Vamos usar o experimento em que a empresa de tecnologia Trip.com sorteou
+            funcionários para trabalhar de casa duas vezes por semana ou ir ao escritório todos os dias, publicado por
+            Bloom, Han e Liang na revista <em>Nature</em>:
+          </p>
+
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Perfil avaliado</th>
+                  <th>Pessoas no grupo</th>
+                  <th>Demissões no presencial</th>
+                  <th>Demissões no híbrido</th>
+                  <th>Mudança em pontos percentuais</th>
+                  <th>Intervalo de confiança de 95%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Todos os funcionários</td>
+                  <td><code>1.612</code></td>
+                  <td><code>7,2%</code></td>
+                  <td><code>4,8%</code></td>
+                  <td><code>-2,4</code></td>
+                  <td><code>-4,7</code> a <code>-0,1</code></td>
+                </tr>
+                <tr>
+                  <td>Sem cargo de gestão</td>
+                  <td><code>1.217</code></td>
+                  <td><code>8,6%</code></td>
+                  <td><code>5,3%</code></td>
+                  <td><code>-3,3</code></td>
+                  <td><code>-6,1</code> a <code>-0,4</code></td>
+                </tr>
+                <tr>
+                  <td>Gestores</td>
+                  <td><code>395</code></td>
+                  <td><code>3,0%</code></td>
+                  <td><code>3,1%</code></td>
+                  <td><code>+0,2</code></td>
+                  <td><code>-3,2</code> a <code>+3,6</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Repare que o pedido passa apenas os dados do estudo, sem repetir nenhuma regra sobre bordas, linha de zero,
+            rodapé, emojis ou tabelas:
+          </p>
+
+          <div class="prompt-box">
+            <div class="prompt-box-header">
+              <span>Pedido combinando escrita + gráfico com incerteza</span>
+              <button class="copy-btn" type="button" onclick="copyPrompt(this)">Copiar prompt</button>
+            </div>
+            <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere a imagem de um gráfico em Python com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
+          </div>
+
+          <p>
+            Veja o resultado real no Gemini: a <code>bom-grafico</code> destacou a linha de zero mostrando na hora que a
+            queda se concentrou em quem não ocupa cargo de gestão e que o intervalo dos gestores cruza o zero, enquanto
+            a <code>escrita-sem-jargao</code> organizou o comunicado de forma direta com tabela:
+          </p>
+
+          <div class="two-col">
+            <div class="screenshot-card">
+              <img src="images/gemini_composicao_grafico.png"
+                alt="Conversa nova no Gemini gerando gráfico em Python com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
+                class="screenshot-img" />
+              <p class="screenshot-caption">A skill bom-grafico aplica sozinha linha de zero, intervalos limpos, amostras e fonte.</p>
+            </div>
+            <div class="screenshot-card">
+              <img src="images/gemini_composicao_texto.png"
+                alt="Continuação da mesma resposta no Gemini com comunicado direto para o RH e tabela comparativa dos três perfis"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Na mesma resposta, o comunicado segue a escrita-sem-jargao com frases curtas e tabela.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PARTE 4: BIBLIOTECAS E SEGURANÇA
+  ============================================= -->
+  <section class="tutorial-section" id="parte-4">
+    <div class="container skills-container">
+      <div class="section-tag">Parte 4 · Próximos passos</div>
+      <h2 class="tutorial-title">Onde encontrar skills prontas e como usar com cuidado</h2>
+      <p class="tutorial-intro">
+        Além de salvar seus próprios fluxos, você pode aproveitar skills abertas criadas por outras pessoas para lidar
+        com planilhas, apresentações, revisão de código e design.
+      </p>
+
+      <!-- 4.1 Bibliotecas -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">4.1</div>
+          <h3 class="step-title">Catálogos de skills prontas</h3>
+        </div>
+        <div class="step-body">
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Onde procurar</th>
+                  <th>O que você encontra lá</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Galerias integradas</td>
+                  <td>Skills prontas para ativar com um clique dentro do Gemini App em <code>Personalizar &gt; Habilidades</code>, do Claude App em <code>Customize &gt; Discover</code> e do Antigravity.</td>
+                </tr>
+                <tr>
+                  <td><a href="https://skills.sh" target="_blank" rel="noopener" class="inline-link">skills.sh</a></td>
+                  <td>Buscador público que reúne pacotes abertos da comunidade no GitHub para agentes de código.</td>
+                </tr>
+                <tr>
+                  <td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener" class="inline-link">anthropics/skills</a> e <a href="https://agentskills.io" target="_blank" rel="noopener" class="inline-link">agentskills.io</a></td>
+                  <td>Exemplos oficiais para documentos, planilhas e apresentações, junto com a documentação aberta do formato.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="two-col">
+            <div class="screenshot-card">
+              <img src="images/gemini_galeria_habilidades.png"
+                alt="Galeria de Habilidades nativas do Gemini em português"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Galeria de habilidades prontas no Gemini App.</p>
+            </div>
+            <div class="screenshot-card">
+              <img src="images/claude_customize_skills.png"
+                alt="Galeria Customize > Skills > Discover no Claude App"
+                class="screenshot-img" />
+              <p class="screenshot-caption">Catálogo Discover de skills no Claude App.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.2 Segurança e MCP enxuto -->
+      <div class="step-card">
+        <div class="step-header">
+          <div class="step-number">4.2</div>
+          <h3 class="step-title">Cuidados ao usar skills de outras pessoas</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Como uma skill pode trazer código executável e instruções que guiam o agente, instalar pacotes desconhecidos
+            da internet envolve riscos parecidos com instalar extensões de navegador. Ninguém vai ler manualmente
+            pacotes enormes linha por linha toda vez, então valem cuidados simples:
+          </p>
+
+          <div class="table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Cuidado</th>
+                  <th>Na prática</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Conferir a origem</td>
+                  <td>Dê preferência às galerias oficiais das ferramentas e a organizações conhecidas, evitando pacotes anônimos recém-publicados.</td>
+                </tr>
+                <tr>
+                  <td>Pedir uma checagem rápida para a IA</td>
+                  <td>Antes de ativar uma skill grande baixada da internet, peça ao próprio agente para verificar se há envio de dados para fora ou leitura de arquivos sensíveis.</td>
+                </tr>
+                <tr>
+                  <td>Evitar atualizações cegas</td>
+                  <td>Mantenha uma cópia fixa da skill que você já revisou em vez de puxar mudanças automáticas de repositórios externos.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Por fim, se você cruzar com a sigla <strong>MCP</strong> nas configurações do seu agente, a diferença é
+            simples: o MCP conecta a IA a ferramentas externas, como sua agenda, e-mail ou sistema de tarefas. Já a
+            skill ensina o seu jeito de fazer o trabalho depois que os dados estão na conversa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Gabriela Surita</p>
+    <p style="font-size: 0.75rem; opacity: 0.4; margin-top: 0.35rem;">
+      as opiniões aqui são estritamente pessoais e não refletem as da empresa onde trabalho.
+    </p>
+  </footer>
+
+  <script src="../../assets/main.js"></script>
+  <script>
+    function scrollToSec(id) {
+      document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    (function () {
+      const html = document.documentElement;
+      const btns = document.querySelectorAll('[data-platform-btn]');
+
+      function setPlatform(platform) {
+        html.setAttribute('data-selected-platform', platform);
+        localStorage.setItem('skills-course-platform-v2', platform);
+        btns.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-platform-btn') === platform);
+        });
+      }
+
+      const current = html.getAttribute('data-selected-platform') || 'gemini-app';
+      setPlatform(current);
+
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setPlatform(btn.getAttribute('data-platform-btn'));
+        });
+      });
+    })();
+
+    function copyPrompt(button) {
+      const box = button.closest('.prompt-box');
+      const body = box ? box.querySelector('.prompt-box-body') : null;
+      if (!body) return;
+      navigator.clipboard.writeText(body.innerText.trim()).then(() => {
+        const original = button.textContent;
+        button.textContent = 'Copiado ✓';
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1800);
+      });
+    }
+  </script>
+</body>
+
+</html>
