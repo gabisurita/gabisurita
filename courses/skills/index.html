@@ -333,10 +333,10 @@ Time de Produto &amp; Engenharia</div>
             </p>
             <div class="two-col">
               <div class="screenshot-card">
-                <img src="images/claude_customize_skills.png"
-                  alt="Menu Customize > Skills no Claude App"
+                <img src="images/claude_skills_salvas.png"
+                  alt="Menu Customize > Skills > Yours no Claude App mostrando a skill escrita-sem-jargao salva"
                   class="screenshot-img" />
-                <p class="screenshot-caption">Menu Customize &gt; Skills onde ficam suas skills salvas.</p>
+                <p class="screenshot-caption">Em Customize &gt; Skills ficam listadas as skills que você criou.</p>
               </div>
               <div class="screenshot-card">
                 <img src="images/claude_upload_skill.png"
@@ -460,18 +460,37 @@ Time de Produto &amp; Engenharia</div>
             <div class="prompt-box-body">Refaça o gráfico em SVG seguindo o que todo bom gráfico de dados deve ter: mostre pontos com barras de erro claras, destaque a linha tracejada de referência em 1,00 explicando na própria linha o que significa estar abaixo dela, posicione os valores acima das barras sem encostar nas linhas, tire as bordas do topo e da direita, indique no subtítulo que as barras representam intervalos de confiança de 95% (n = 47.471 adultos) e cite a fonte no rodapé: Paluch et al., The Lancet Public Health (2022).</div>
           </div>
 
-          <div class="two-col">
-            <div class="screenshot-card">
-              <img src="images/gemini_grafico_antes.png"
-                alt="Gráfico inicial gerado pelo Gemini sem tamanho da amostra, sem explicação da linha de referência e sem fonte no rodapé"
-                class="screenshot-img" />
-              <p class="screenshot-caption">Pedido inicial: sem amostra, sem explicação da linha de base e sem fonte.</p>
+          <div data-platform-content="gemini-app">
+            <div class="two-col">
+              <div class="screenshot-card">
+                <img src="images/gemini_grafico_antes.png"
+                  alt="Gráfico inicial gerado pelo Gemini sem tamanho da amostra, sem explicação da linha de referência e sem fonte no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Pedido inicial: sem amostra, sem explicação da linha de base e sem fonte.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/gemini_grafico_depois.png"
+                  alt="Gráfico em SVG corrigido no Gemini com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Após o ajuste em SVG: referência explicada, amostra no subtítulo e fonte no rodapé.</p>
+              </div>
             </div>
-            <div class="screenshot-card">
-              <img src="images/gemini_grafico_depois.png"
-                alt="Gráfico em SVG corrigido no Gemini com intervalos de confiança limpos, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
-                class="screenshot-img" />
-              <p class="screenshot-caption">Após o ajuste em SVG: referência explicada, amostra no subtítulo e fonte no rodapé.</p>
+          </div>
+
+          <div data-platform-content="claude-app">
+            <div class="two-col">
+              <div class="screenshot-card">
+                <img src="images/claude_grafico_antes.png"
+                  alt="Gráfico inicial gerado pelo Claude com limites do intervalo em linhas separadas, sem amostra e sem fonte no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Pedido inicial: limites em linhas soltas, sem amostra e sem fonte.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/claude_grafico_depois.png"
+                  alt="Gráfico em SVG corrigido no Claude com barras de erro limpas, linha de referência anotada, amostra no subtítulo e citação da Lancet no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Após o ajuste em SVG: referência explicada, amostra no subtítulo e fonte no rodapé.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -524,8 +543,22 @@ Time de Produto &amp; Engenharia</div>
             </div>
             <p style="margin-top: 1rem;">
               Confira as regras geradas no painel lateral e clique em <strong>Save skill</strong> para ativar na sua
-              conta.
+              conta:
             </p>
+            <div class="two-col" style="margin-top: 0.75rem;">
+              <div class="screenshot-card">
+                <img src="images/claude_grafico_criada.png"
+                  alt="Painel lateral do Claude mostrando a skill bom-grafico com SKILL.md, arquivo modelo.svg e botão Save skill"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Painel lateral do Claude com as instruções em SVG e o botão Save skill.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/claude_duas_skills.png"
+                  alt="Tela Customize > Skills > Yours no Claude mostrando bom-grafico e escrita-sem-jargao ativas"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">As duas skills salvas aparecem juntas em Customize &gt; Skills.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -628,24 +661,48 @@ Time de Produto &amp; Engenharia</div>
             <div class="prompt-box-body">Escreva um comunicado interno curto para o time de RH com uma tabela resumindo o que o experimento da Trip.com publicado na Nature (Bloom et al., 2024) mostrou sobre trabalho híbrido (2 dias em casa) e pedidos de demissão, e gere um gráfico com os dados: Todos os funcionários (n = 1.612, -2,4 pontos, IC 95% de -4,7 a -0,1), Sem cargo de gestão (n = 1.217, -3,3 pontos, IC 95% de -6,1 a -0,4) e Gestores (n = 395, +0,2 ponto, IC 95% de -3,2 a +3,6).</div>
           </div>
 
-          <p>
-            Veja o resultado real no Gemini: a <code>escrita-sem-jargao</code> abriu a resposta com um comunicado
-            direto e tabela simples, enquanto a <code>bom-grafico</code> gerou logo abaixo o gráfico em SVG destacando
-            a linha de zero e a fonte:
-          </p>
+          <div data-platform-content="gemini-app">
+            <p>
+              Veja o resultado real no Gemini: a <code>escrita-sem-jargao</code> abriu a resposta com um comunicado
+              direto e tabela simples, enquanto a <code>bom-grafico</code> gerou logo abaixo o gráfico em SVG destacando
+              a linha de zero e a fonte:
+            </p>
 
-          <div class="two-col">
-            <div class="screenshot-card">
-              <img src="images/gemini_composicao_texto.png"
-                alt="Início da resposta no Gemini com comunicado direto para o RH e tabela comparativa dos três perfis do experimento da Trip.com"
-                class="screenshot-img" />
-              <p class="screenshot-caption">O comunicado abre a resposta seguindo a escrita-sem-jargao com frases curtas e tabela.</p>
+            <div class="two-col">
+              <div class="screenshot-card">
+                <img src="images/gemini_composicao_texto.png"
+                  alt="Início da resposta no Gemini com comunicado direto para o RH e tabela comparativa dos três perfis do experimento da Trip.com"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">O comunicado abre a resposta seguindo a escrita-sem-jargao com frases curtas e tabela.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/gemini_composicao_grafico.png"
+                  alt="Continuação da mesma resposta no Gemini gerando gráfico em SVG com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Logo abaixo, a skill bom-grafico entrega o gráfico em SVG com linha de zero, amostras e fonte.</p>
+              </div>
             </div>
-            <div class="screenshot-card">
-              <img src="images/gemini_composicao_grafico.png"
-                alt="Continuação da mesma resposta no Gemini gerando gráfico em SVG com intervalos de confiança do experimento da Trip.com publicado na Nature, linha tracejada em zero e fonte no rodapé"
-                class="screenshot-img" />
-              <p class="screenshot-caption">Logo abaixo, a skill bom-grafico entrega o gráfico em SVG com linha de zero, amostras e fonte.</p>
+          </div>
+
+          <div data-platform-content="claude-app">
+            <p>
+              Veja o resultado real no Claude: o agente leu as duas skills juntas, abriu a resposta com o gráfico em
+              SVG destacando a linha de zero e entregou logo abaixo o comunicado direto com tabela:
+            </p>
+
+            <div class="two-col">
+              <div class="screenshot-card">
+                <img src="images/claude_composicao_grafico.png"
+                  alt="Início da resposta no Claude acionando as duas skills e exibindo o gráfico em SVG do experimento da Trip.com com linha de zero anotada e fonte no rodapé"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">O Claude consulta as skills salvas e abre a resposta com o gráfico em SVG padronizado.</p>
+              </div>
+              <div class="screenshot-card">
+                <img src="images/claude_composicao_texto.png"
+                  alt="Continuação da mesma resposta no Claude com comunicado direto para o RH e tabela comparativa dos três perfis do experimento da Trip.com"
+                  class="screenshot-img" />
+                <p class="screenshot-caption">Logo abaixo na mesma resposta, o comunicado segue a escrita-sem-jargao com tabela simples.</p>
+              </div>
             </div>
           </div>
         </div>
